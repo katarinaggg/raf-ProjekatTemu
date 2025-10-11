@@ -1,0 +1,229 @@
+.navbar {
+  background-color: #523f21;
+  padding: 15px 15px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.navbar-brand {
+  font-family: "Poppins", sans-serif;
+  color: #fdf5e6;
+  font-weight: 600;
+  font-size: 1.3rem;
+  text-decoration: none;
+}
+
+.navbar-brand:hover {
+  color: #ca2626;
+}
+
+.form-select,
+.form-control {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 10px;
+  height: 38px;
+}
+
+.form-select:focus,
+.form-control:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #f9d89c;
+}
+
+.btn-search {
+  background-color: #8b5e3c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  height: 38px;
+  padding: 0 18px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.btn-search:hover {
+  background-color: #d7b77c;
+  color: white;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  color: #3b2a1a;
+  background-color: #fffaf3;
+}
+
+.naslovna_sekcija {
+  background-image: url("../images/naslovna.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 2rem;
+  margin-top: 80px;
+}
+
+.naslovna_sekcija .text {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.naslovna_sekcija h1 {
+  font-size: 5rem;
+  font-weight: bold;
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.8);
+  font-family: "Playfair Display", serif;
+  margin-bottom: 0;
+  line-height: 1.1;
+}
+
+.naslovna_sekcija h3 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #f1e1c0;
+  font-family: "Playfair Display", serif;
+  margin-top: 0;
+  line-height: 1;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.about-section {
+  background-color: #fdf5e6;
+  padding: 60px 0;
+}
+
+.about-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.about-text {
+  flex: 1;
+  padding: 20px;
+}
+
+.about-text h2 {
+  font-family: "Playfair Display", serif;
+  color: #523f21;
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.about-text p {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: #523f21;
+  max-width: 500px;
+}
+
+.about-image {
+  flex: 1;
+  text-align: center;
+}
+
+.about-image img {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.museum-info {
+  background-color: #ffffff;
+  padding: 80px 0;
+}
+
+.museum-info .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.museum-info h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 2.8rem;
+  color: #523f21;
+  font-weight: 700;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.museum-info h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #523f21;
+  margin-top: 40px;
+  margin-bottom: 15px;
+}
+
+.museum-info p {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.15rem;
+  line-height: 1.9;
+  color: #523f21;
+  margin-bottom: 25px;
+  text-align: justify;
+}
+
+.gallery-section {
+  background-color: #fffaf3;
+  padding: 60px 0;
+}
+
+.gallery-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.gallery-item img {
+  width: 100%;
+  max-width: 390px;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.gallery-item img:hover {
+  transform: scale(1.07);
+}
+
+.footer {
+  background-color: #3b2a1a;
+  color: #fdf5e6;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.95rem;
+  text-align: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 80px; /* visina footera */
+  margin-top: auto; /* ovo ga gura na dno */
+}
