@@ -56,6 +56,9 @@ body {
   font-family: "Poppins", sans-serif;
   color: #3b2a1a;
   background-color: #fffaf3;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .naslovna_sekcija {
@@ -214,7 +217,7 @@ body {
 }
 
 .footer {
-  background-color: #3b2a1a;
+  background-color: #523f21;
   color: #fdf5e6;
   font-family: "Poppins", sans-serif;
   font-size: 0.95rem;
@@ -224,6 +227,214 @@ body {
   justify-content: center;
   align-items: center;
 
-  height: 80px; /* visina footera */
-  margin-top: auto; /* ovo ga gura na dno */
+  height: 80px;
+  margin-top: auto;
+}
+
+main {
+  flex: 1;
+}
+
+#pageTitle {
+  font-family: "Playfair Display", serif;
+  font-size: 2.8rem;
+  font-weight: bold;
+  color: #523f21;
+  text-align: center;
+  margin-bottom: 40px;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.card {
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+}
+
+.card-title {
+  font-family: "Playfair Display", serif;
+  color: #3b2a1a;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.card-text {
+  font-family: "Poppins", sans-serif;
+  color: #6b5435;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.card-img-top {
+  object-fit: contain;
+  height: 280px;
+  background-color: #f9f4ea;
+  padding: 10px;
+  border-bottom: 1px solid #e4d8b4;
+}
+
+.card-img-top:hover {
+  transform: scale(1.05);
+  transition: transform 0.4s ease;
+}
+
+.pagination .page-item .page-link {
+  color: #3b2a1a;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  margin: 0 3px;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #8b5e3c;
+  color: #fffaf3;
+  border: none;
+}
+
+.pagination .page-item .page-link:hover {
+  background-color: #d7b77c;
+  color: white;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #8b5e3c;
+  color: #fffaf3;
+  box-shadow: 0 0 8px rgba(139, 94, 60, 0.4);
+}
+
+.pagination .page-item .page-link {
+  transition: all 0.3s ease;
+  padding: 8px 14px;
+}
+
+.pagination .page-item.disabled .page-link {
+  background-color: #f0e6d5;
+  color: #a79b8b;
+  pointer-events: none;
+}
+
+.no-results {
+  font-family: "Poppins", sans-serif;
+  color: #3b2a1a;
+  background-color: #fdf5e6;
+  border: 1px solid #e4d8b4;
+  border-radius: 10px;
+  padding: 40px;
+  max-width: 600px;
+  margin: 60px auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.no-results h4 {
+  font-family: "Playfair Display", serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #523f21;
+  margin-bottom: 15px;
+}
+
+.no-results p {
+  font-size: 1.1rem;
+  color: #6b5435;
+  margin: 0;
+}
+
+.artwork-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  gap: 60px;
+  margin: 50px auto;
+  max-width: 1200px;
+}
+
+.artwork-image {
+  flex: 1 1 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.artwork-image img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 12px;
+  background-color: #f9f4ea;
+  padding: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.4s ease;
+}
+
+.artwork-image img:hover {
+  transform: scale(1.03);
+}
+
+.artwork-info {
+  flex: 1 1 45%;
+  background-color: #fdf5e6;
+  border-radius: 12px;
+  padding: 35px 40px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.artwork-info h3 {
+  font-family: "Playfair Display", serif;
+  color: #3b2a1a;
+  font-size: 2.3rem;
+  font-weight: bold;
+  margin-bottom: 25px;
+  text-align: center;
+  text-shadow: 1px 1px #d6c1a3;
+}
+
+.artwork-info p {
+  font-family: "Poppins", sans-serif;
+  color: #6b5435;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: 12px;
+}
+
+.artwork-info strong {
+  color: #3b2a1a;
+  font-weight: 600;
+}
+
+.artwork-info a.btn-search {
+  background-color: #8b5e3c;
+  color: #fffaf3;
+  border: none;
+  border-radius: 8px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  height: 42px;
+  line-height: 42px;
+  padding: 0 25px;
+  text-align: center;
+  display: inline-block;
+  align-self: center;
+  margin-top: 25px;
+  transition: all 0.3s ease;
+}
+
+.artwork-info a.btn-search:hover {
+  background-color: #d7b77c;
+  color: white;
+  transform: translateY(-2px);
 }

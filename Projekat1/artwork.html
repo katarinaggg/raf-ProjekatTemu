@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Artwork Details</title>
+
+    <link
+      rel="icon"
+      type="image/png"
+      href="images/The_Metropolitan_Museum_of_Art_Logo.svg.png"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div
+        class="container-fluid d-flex justify-content-between align-items-center"
+      >
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+          <img
+            src="images/The_Metropolitan_Museum_of_Art_Logo.svg.png"
+            alt="Logo muzeja"
+            width="40"
+            height="40"
+            class="me-2"
+          />
+          The Metropolitan Museum of Art
+        </a>
+
+        <form class="d-flex align-items-center" role="search">
+          <select id="departmentList" class="form-select me-2">
+            <option selected>Departments</option>
+          </select>
+          <input
+            id="searchInput"
+            class="form-control me-2"
+            type="search"
+            placeholder="Search..."
+          />
+          <button id="searchBtn" class="btn btn-search" type="button">
+            Search
+          </button>
+        </form>
+      </div>
+    </nav>
+
+    <main class="container mt-5 pt-4">
+      <div id="artworkDetails" class="mt-4"></div>
+    </main>
+
+    <footer class="footer">
+      © 2025 The Metropolitan Museum of Art | Designed by Katarina Gordic
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/artwork.js"></script>
+  </body>
+</html>
