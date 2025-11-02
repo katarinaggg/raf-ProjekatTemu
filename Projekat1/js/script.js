@@ -73,6 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 ///////////////////////////////////////////////////////////////////////////////////
 
+// funckija za pravljenje paginationa
 function renderPagination(
   paginationContainer,
   totalItems,
@@ -89,6 +90,7 @@ function renderPagination(
 
   const paginationList = paginationContainer.querySelector(".pagination");
 
+  // dugme previous
   const prevItem = document.createElement("li");
   prevItem.classList.add("page-item");
   if (currentPage === 1) prevItem.classList.add("disabled");
@@ -100,23 +102,26 @@ function renderPagination(
   prevItem.addEventListener("click", (e) => {
     e.preventDefault();
     if (currentPage > 1) {
-      onPageChange(currentPage - 1);
+      onPageChange(currentPage - 1); // prosledjena funkcija tj renderPage (kada menjamo str)
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   });
   paginationList.appendChild(prevItem);
 
+  // da se pokazuje 5 dugmica za stranice (-2+)
   const maxVisible = 5;
   let start = Math.max(1, currentPage - 2);
   let end = Math.min(totalPages, start + maxVisible - 1);
   if (end - start < maxVisible - 1) start = Math.max(1, end - maxVisible + 1);
 
+  // pravimo element za svaku str i dodajemo listener
   for (let i = start; i <= end; i++) {
     const li = document.createElement("li");
     li.classList.add("page-item");
     if (i === currentPage) li.classList.add("active");
     li.innerHTML = `<a class="page-link" href="#">${i}</a>`;
 
+    // kada se klikne na i-tu str prelazi se na nju i poziva renderPage
     li.addEventListener("click", (e) => {
       e.preventDefault();
       onPageChange(i);
@@ -126,6 +131,7 @@ function renderPagination(
     paginationList.appendChild(li);
   }
 
+  // dugme next
   const nextItem = document.createElement("li");
   nextItem.classList.add("page-item");
   if (currentPage === totalPages) nextItem.classList.add("disabled");
@@ -137,7 +143,7 @@ function renderPagination(
   nextItem.addEventListener("click", (e) => {
     e.preventDefault();
     if (currentPage < totalPages) {
-      onPageChange(currentPage + 1);
+      onPageChange(currentPage + 1); // prelazak na sledecu str poziv renderPage
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   });
@@ -146,20 +152,24 @@ function renderPagination(
 
 ////////////////////////////////////////////////////////////////////////////////
 
+// ucitavanje umetnickih dela departmana
 function loadDepartmentArtworks(departmentId) {
   const pageTitle = document.getElementById("pageTitle");
   const artworksContainer = document.getElementById("artworksContainer");
   const paginationContainer = document.getElementById("paginationContainer");
 
+  // izvlacimo departman sa odgovarajucim ID-jem
   fetch("https://collectionapi.metmuseum.org/public/collection/v1/departments")
     .then((response) => response.json())
     .then((data) => {
       const selectedDepartment = data.departments.find(
         (dep) => dep.departmentId == departmentId
       );
+      // postavljamo  naslov
       pageTitle.textContent = selectedDepartment?.displayName || "Department";
       document.title = selectedDepartment?.displayName || "Department";
 
+      // vracamo sva dela iz tog departmana
       return fetch(
         `https://collectionapi.metmuseum.org/public/collection/v1/objects?departmentIds=${departmentId}`
       );
@@ -170,6 +180,7 @@ function loadDepartmentArtworks(departmentId) {
       const itemsPerPage = 10;
       let currentPage = 1;
 
+      // pravljenje 1 stranice
       function renderPage(page) {
         artworksContainer.innerHTML = "";
         const start = (page - 1) * itemsPerPage;
