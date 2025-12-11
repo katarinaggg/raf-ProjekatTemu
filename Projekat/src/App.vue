@@ -3,6 +3,7 @@
     <Navbar />
     <main class="content">
       <RouterView />
+      <AppToast />
     </main>
     <Footer />
   </div>
@@ -12,6 +13,7 @@
 import Navbar from './components/AppNavbar.vue'
 import Footer from './components/AppFooter.vue'
 import { RouterView } from 'vue-router'
+import AppToast from './components/AppToast.vue'
 </script>
 
 <style scoped>
@@ -21,7 +23,7 @@ import { RouterView } from 'vue-router'
   flex-direction: column;
 }
 .content {
-  flex: 1; /* zauzima prostor između nav i footer */
+  flex: 1;
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;

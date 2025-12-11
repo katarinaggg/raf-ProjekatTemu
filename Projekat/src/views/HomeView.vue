@@ -14,7 +14,6 @@ import { RouterLink } from 'vue-router'
 </script>
 
 <style scoped>
-/* Skini ograničenja širine iz App.vue SAMO na ovoj stranici */
 :global(.content) {
   max-width: none !important;
   padding: 0 !important;
@@ -22,11 +21,10 @@ import { RouterLink } from 'vue-router'
   width: 100% !important;
 }
 
-/* HERO sekcija: pozadina preko cele širine, bez skrola */
 .hero-bg {
   width: 100%;
   min-height: calc(100dvh - 60px - 56px); /* visina ekrana - navbar - footer */
-  background: url('/pozadina.png') center / cover no-repeat;
+  background: url('@/assets/img/pozadina.png') center / cover no-repeat;
   display: flex;
   align-items: center;
 }

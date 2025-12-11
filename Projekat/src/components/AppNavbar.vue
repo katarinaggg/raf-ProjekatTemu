@@ -2,27 +2,39 @@
   <header class="navbar">
     <div class="left">
       <RouterLink to="/" class="brand" aria-label="Home">
-        <img src="/logo1.png" alt="Temu sa Temua" class="logo" />
+        <img src="@/assets/img/logo1.png" alt="Temu sa Temua" class="logo" />
       </RouterLink>
 
       <nav class="nav-left">
         <RouterLink to="/" class="link">Home</RouterLink>
         <RouterLink to="/create" class="link">New</RouterLink>
         <RouterLink to="/products" class="link">Products</RouterLink>
-        <RouterLink to="/me" class="link">My Profile</RouterLink>
+        <RouterLink v-if="auth.token" to="/me" class="link">My Profile</RouterLink>
       </nav>
     </div>
 
     <nav class="nav-right">
-      <RouterLink to="/login" class="link">Login</RouterLink>
-      <RouterLink to="/register" class="link">Register</RouterLink>
-      <RouterLink to="/logout" class="link">Logout</RouterLink>
+      <RouterLink v-if="!auth.token" to="/login" class="link">Login</RouterLink>
+      <RouterLink v-if="!auth.token" to="/register" class="link">Register</RouterLink>
+      <button v-if="auth.token" class="link logout-btn" @click="logoutHandler">Logout</button>
     </nav>
   </header>
 </template>
 
 <script setup lang="ts">
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRouter } from 'vue-router'
+import { useAuthStore } from '@/stores/auth'
+import { useToastStore } from '@/stores/toast'
+
+const auth = useAuthStore()
+const toast = useToastStore()
+const router = useRouter()
+
+function logoutHandler() {
+  auth.logout()
+  toast.showInfo('You have been logged out ')
+  router.push('/') // redirect na home
+}
 </script>
 
 <style scoped>
@@ -41,7 +53,6 @@ import { RouterLink } from 'vue-router'
   overflow: visible;
 }
 
-/* leva grupa: logo + linkovi */
 .left {
   display: flex;
   align-items: center;
@@ -50,7 +61,6 @@ import { RouterLink } from 'vue-router'
   min-width: 0;
 }
 
-/* logo */
 .logo {
   height: 44px;
   width: auto;
@@ -71,12 +81,11 @@ import { RouterLink } from 'vue-router'
   margin-left: auto;
 }
 
-/* linkovi */
 .link {
   text-decoration: none;
   color: #594c4c;
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: 550;
   padding: 6px 10px;
   border-radius: 8px;
   transition: 0.2s ease;
@@ -89,7 +98,6 @@ import { RouterLink } from 'vue-router'
   font-weight: 600;
 }
 
-/* “skupljanje” na užim širinama da sve stane u jedan red */
 @media (max-width: 1200px) {
   .logo {
     height: 40px;
@@ -111,5 +119,26 @@ import { RouterLink } from 'vue-router'
     font-size: 13px;
     padding: 5px 8px;
   }
+}
+
+.logout-btn {
+  all: unset;
+  display: inline-block;
+  text-decoration: none;
+  color: #594c4c;
+  font-size: 18px;
+  font-weight: 550;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: 0.2s ease;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.logout-btn:hover,
+.logout-btn.router-link-active {
+  background: #e7a8a8;
+  color: #fff;
+  font-weight: 600;
 }
 </style>

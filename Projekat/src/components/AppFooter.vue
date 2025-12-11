@@ -31,8 +31,9 @@
   align-items: center;
 
   gap: 10px;
-  font-size: 14px;
+  font-size: 15px;
   text-align: center;
+  letter-spacing: 0.3px;
 }
 
 .brand {
