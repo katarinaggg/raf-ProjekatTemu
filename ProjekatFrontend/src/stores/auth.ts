@@ -71,7 +71,7 @@ export const useAuthStore = defineStore('auth', {
         const parsed = JSON.parse(saved)
         this.token = parsed.token ?? null
         this.username = parsed.username ?? null
-        this.userId = parsed.user_id ?? null
+        this.userId = parsed.userId ?? null
 
         if (this.token && !this.userId) {
           const decoded = decodeToken(this.token)

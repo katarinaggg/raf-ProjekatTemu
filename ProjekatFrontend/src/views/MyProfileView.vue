@@ -16,7 +16,7 @@
         <div class="total">Total: ${{ o.value.toFixed(2) }}</div>
 
         <div class="middle-row">
-          <span class="price">${{ o.value }}</span>
+          <span class="price"> ${{ (o.value / o.quantity).toFixed(2) }} </span>
           <span class="qty">Quantity: {{ o.quantity }}</span>
         </div>
 

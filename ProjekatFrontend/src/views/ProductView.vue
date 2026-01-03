@@ -79,12 +79,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
 import { apiGet, apiPatch, apiDelete, apiPost } from '@/api/client'
 import { getErrorMessage } from '@/utils/errorHandler'
 import { useAuthStore } from '@/stores/auth'
 import { useRoute, useRouter } from 'vue-router'
 import { useToastStore } from '@/stores/toast'
+import { socket } from '@/socket'
 
 type Product = {
   product_id: string
@@ -159,6 +160,20 @@ async function loadProduct() {
 }
 
 onMounted(loadProduct)
+
+// listener za realtime kupovinu
+onMounted(() => {
+  socket.on('product:update', ({ productId, quantity }) => {
+    if (product.value && product.value.product_id === productId) {
+      product.value.quantity = quantity
+    }
+  })
+})
+
+// uklanjamo listener kad napustimo tu stranicu
+onUnmounted(() => {
+  socket.off('product:update')
+})
 
 const isOwner = computed(() => {
   return auth.token !== null && product.value?.creator.user_id === auth.userId

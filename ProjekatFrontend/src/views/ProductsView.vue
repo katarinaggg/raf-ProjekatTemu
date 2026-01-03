@@ -28,8 +28,12 @@
         :to="`/products/${p.product_id}`"
         class="card-link"
       >
-        <div class="card">
-          <img :src="p.image_url" class="thumb" />
+        <div class="card" :class="{ out: p.quantity === 0 }">
+          <div class="image-wrapper">
+            <img :src="p.image_url" class="thumb" />
+
+            <div v-if="p.quantity === 0" class="badge">OUT OF STOCK</div>
+          </div>
 
           <div class="title-row">
             <input v-if="editingId === p.product_id" v-model="editedTitle" class="edit-input" />
@@ -95,11 +99,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch, computed } from 'vue'
+import { ref, onMounted, onUnmounted, watch, computed } from 'vue'
 import { apiPatch, apiDelete, apiGet } from '@/api/client'
 import { getErrorMessage } from '@/utils/errorHandler'
 import { useToastStore } from '@/stores/toast'
 import { useRoute, useRouter } from 'vue-router'
+import { socket } from '@/socket'
 
 const toast = useToastStore()
 const route = useRoute()
@@ -223,6 +228,25 @@ watch([page, filter, () => route.query.creator], () => {
 })
 
 onMounted(fetchProducts)
+
+// listener za real-time kupovinu
+onMounted(() => {
+  // kad backend emituje event (smanjio se quantity -> neko je kupio proizvod)
+  socket.on('product:update', ({ productId, quantity }) => {
+    // trazimo tacno taj product koji je neko kupio
+    const product = products.value.find((p) => p.product_id === productId)
+
+    // menjamo state -> refreshuje se izgled
+    if (product) {
+      product.quantity = quantity
+    }
+  })
+})
+
+// uklanjamo listener kad napustimo tu stranicu
+onUnmounted(() => {
+  socket.off('product:update')
+})
 
 // pomocna fja za formatiranje vremena kreiranja
 function timeAgo(timestamp: string) {
@@ -353,7 +377,12 @@ function filterByCreator(userId: string) {
   margin: 0 auto;
 }
 
+.image-wrapper {
+  position: relative;
+}
+
 .card {
+  position: relative;
   width: 260px;
   background: #fffafa;
   border: 2px solid #e6c3c3;
@@ -370,6 +399,23 @@ function filterByCreator(userId: string) {
   transform: translateY(-6px) scale(1.03);
   box-shadow: 0 12px 25px rgba(231, 168, 168, 0.4);
   border-color: #e7a8a8;
+}
+
+.badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #d60000;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 13px;
+  z-index: 2;
+}
+
+.card.out {
+  opacity: 0.6;
 }
 
 .thumb {

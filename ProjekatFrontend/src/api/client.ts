@@ -1,4 +1,5 @@
-const BASE_URL = 'https://temufromtemu-86jb.onrender.com'
+//const BASE_URL = 'https://temufromtemu-86jb.onrender.com'
+const BASE_URL = 'http://localhost:3000'
 
 export type ErrorCode =
   | 'DUPLICATE_USERNAME'
